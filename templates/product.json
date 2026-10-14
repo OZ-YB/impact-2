@@ -1,1 +1,462 @@
-{"sections":{"main":{"type":"main-product","blocks":{"vendor":{"type":"vendor","settings":{}},"title":{"type":"title","settings":{}},"badges":{"type":"badges","settings":{}},"price":{"type":"price","settings":{}},"rating":{"type":"rating","settings":{}},"payment_terms":{"type":"payment_terms","settings":{}},"separator":{"type":"separator","settings":{}},"description":{"type":"description","settings":{}},"variant_picker":{"type":"variant_picker","settings":{}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{}},"pickup_availability":{"type":"pickup_availability","settings":{}}},"block_order":["vendor","title","badges","price","rating","payment_terms","separator","description","variant_picker","quantity_selector","buy_buttons"],"settings":{}},"related-products":{"type":"related-products","settings":{}}},"order":["main","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "rating": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'zonea-rating' %}"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h1"
+          }
+        },
+        "benefits": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'zonea-benefits' %}"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_style": "block",
+            "swatch_selector_style": "none"
+          }
+        },
+        "packs": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'zonea-packs', product: product %}"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "#E58A2E",
+            "atc_button_text_color": "#ffffff"
+          }
+        },
+        "trust": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'zonea-trust' %}"
+          }
+        },
+        "how": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "picto-question",
+            "title": "Comment ça marche ?",
+            "content": "<p>Branchez ZONÉA sur une prise de la pièce à protéger. Il émet des ultrasons en continu, jour et nuit, dans la zone où il est installé. Pas de spray, pas de piège à vérifier : vous le branchez, puis vous n'y pensez plus.</p><p>Pour de meilleurs résultats : un appareil par pièce, branché à une prise dégagée (pas derrière un meuble ou un rideau), et laissé allumé en permanence.</p>"
+          }
+        },
+        "how_many": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "picto-building",
+            "title": "Combien d'appareils me faut-il ?",
+            "content": "<p>Les ultrasons ne traversent pas les murs : comptez <strong>un appareil par pièce</strong> à protéger.</p><ul><li><strong>Studio / une pièce</strong> : 1 appareil</li><li><strong>Appartement 2–3 pièces</strong> (cuisine, salle de bain, chambre) : pack de 3</li><li><strong>Maison ou grand appartement</strong> : pack de 6</li></ul>"
+          }
+        },
+        "shipping": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "picto-truck",
+            "title": "Livraison & retours",
+            "content": "<p><strong>Livraison offerte</strong> sur les packs de 3 et de 6. Pack de 1 : 4,99 €.</p><ul><li>France : 6 à 10 jours ouvrés</li><li>Belgique : 8 à 12 jours ouvrés</li><li>Suisse : 7 à 11 jours ouvrés</li></ul><p>Un numéro de suivi vous est envoyé par e-mail dès l'expédition. Vous disposez de 14 jours de droit de rétractation, et de notre garantie satisfait ou remboursé de 30 jours.</p>"
+          }
+        },
+        "guarantee": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "picto-shield",
+            "title": "Garantie satisfait ou remboursé 30 jours",
+            "content": "<p>Essayez ZONÉA chez vous pendant 30 jours. S'il ne vous convient pas, contactez-nous : nous vous remboursons.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "rating",
+        "title",
+        "benefits",
+        "variant_picker",
+        "packs",
+        "buy_buttons",
+        "trust",
+        "how",
+        "how_many",
+        "shipping",
+        "guarantee"
+      ],
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "thumbnails",
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "#F6F1E7",
+        "text_color": "#15211D"
+      }
+    },
+    "reassurance": {
+      "type": "text-with-icons",
+      "blocks": {
+        "ship": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-truck",
+            "icon_background_type": "none",
+            "icon_width": 28,
+            "mobile_icon_width": 24,
+            "title": "Livraison offerte",
+            "content": "<p>Sur les packs de 3 et 6</p>"
+          }
+        },
+        "back": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-return",
+            "icon_background_type": "none",
+            "icon_width": 28,
+            "mobile_icon_width": 24,
+            "title": "30 jours pour essayer",
+            "content": "<p>Satisfait ou remboursé</p>"
+          }
+        },
+        "pay": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-lock",
+            "icon_background_type": "none",
+            "icon_width": 28,
+            "mobile_icon_width": 24,
+            "title": "Paiement sécurisé",
+            "content": "<p>CB, PayPal, Apple Pay</p>"
+          }
+        },
+        "fr": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "icon_background_type": "none",
+            "icon_width": 28,
+            "mobile_icon_width": 24,
+            "title": "Marque française",
+            "content": "<p>Service client en français</p>"
+          }
+        }
+      },
+      "block_order": [
+        "ship",
+        "back",
+        "pay",
+        "fr"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "text_alignment": "center",
+        "icon_spacing": "small",
+        "background": "#15211D",
+        "text_color": "#F6F1E7"
+      }
+    },
+    "problem": {
+      "type": "media-with-text",
+      "blocks": {
+        "p1": {
+          "type": "image",
+          "settings": {
+            "media_width": 50,
+            "media_position": "start",
+            "text_position": "place-self-center-start text-start",
+            "subheading": "Le vrai problème",
+            "title": "Le cafard que vous voyez n'est pas le problème.",
+            "content": "<p>Vous nettoyez tout, vous ne laissez rien traîner… et ils reviennent quand même. Parce qu'ils ne viennent pas forcément de chez vous : <strong>canalisations, fissures, passages autour des tuyaux, logements voisins.</strong></p><p>Le spray règle seulement celui que vous voyez. Les autres continuent de circuler par des passages que vous ne contrôlez pas.</p>",
+            "background": "#FFFDF8",
+            "text_color": "#15211D"
+          }
+        }
+      },
+      "block_order": [
+        "p1"
+      ],
+      "settings": {
+        "full_width": true,
+        "alternate_media_position": false,
+        "spacing": "small"
+      }
+    },
+    "steps": {
+      "type": "multi-column",
+      "blocks": {
+        "s1": {
+          "type": "item",
+          "settings": {
+            "column_size": "3",
+            "title": "1. Branchez",
+            "heading_tag": "h4",
+            "content": "<p>Sur une prise dégagée de la pièce à protéger : cuisine, salle de bain, chambre, entrée.</p>"
+          }
+        },
+        "s2": {
+          "type": "item",
+          "settings": {
+            "column_size": "3",
+            "title": "2. Laissez fonctionner",
+            "heading_tag": "h4",
+            "content": "<p>ZONÉA émet des ultrasons en continu, jour et nuit. Sans bruit pour vous, sans odeur, sans produit.</p>"
+          }
+        },
+        "s3": {
+          "type": "item",
+          "settings": {
+            "column_size": "3",
+            "title": "3. Retrouvez votre tranquillité",
+            "heading_tag": "h4",
+            "content": "<p>Plus besoin de pulvériser, de poser des pièges ni de vérifier chaque soir. Vous reprenez le contrôle.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment": "start",
+        "subheading": "Simple comme une prise",
+        "title": "Comment ça marche",
+        "content": "",
+        "background": "#F6F1E7",
+        "text_color": "#15211D"
+      }
+    },
+    "compare": {
+      "type": "feature-chart",
+      "blocks": {
+        "h": {
+          "type": "headings",
+          "settings": {
+            "heading_1": "Méthode",
+            "heading_2": "Aucun produit chimique",
+            "heading_3": "Aucune odeur",
+            "heading_4": "Rien à racheter chaque mois",
+            "heading_5": "Fonctionne en continu, jour et nuit",
+            "heading_6": "Aucune manipulation au quotidien"
+          }
+        },
+        "v1": {
+          "type": "values",
+          "settings": {
+            "value_1": "<p>ZONÉA</p>",
+            "value_2": "<p>✓</p>",
+            "value_3": "<p>✓</p>",
+            "value_4": "<p>✓</p>",
+            "value_5": "<p>✓</p>",
+            "value_6": "<p>✓</p>"
+          }
+        },
+        "v2": {
+          "type": "values",
+          "settings": {
+            "value_1": "<p>Sprays / bombes</p>",
+            "value_2": "<p>✗</p>",
+            "value_3": "<p>✗</p>",
+            "value_4": "<p>✗</p>",
+            "value_5": "<p>✗</p>",
+            "value_6": "<p>✗</p>"
+          }
+        },
+        "v3": {
+          "type": "values",
+          "settings": {
+            "value_1": "<p>Pièges / gels</p>",
+            "value_2": "<p>✗</p>",
+            "value_3": "<p>✓</p>",
+            "value_4": "<p>✗</p>",
+            "value_5": "<p>✗</p>",
+            "value_6": "<p>✗</p>"
+          }
+        }
+      },
+      "block_order": [
+        "h",
+        "v1",
+        "v2",
+        "v3"
+      ],
+      "settings": {
+        "full_width": true,
+        "subheading": "Comparatif",
+        "title": "Pourquoi changer de méthode ?",
+        "content": "<p>Les sprays et les pièges demandent d'agir encore et encore. ZONÉA travaille en continu, sans que vous ayez à y penser.</p>",
+        "text_position": "center",
+        "max_rows": 10,
+        "background": "#FFFDF8",
+        "text_color": "#15211D",
+        "chart_background": "#F6F1E7",
+        "chart_text_color": "#15211D"
+      }
+    },
+    "reviews": {
+      "type": "zonea-reviews",
+      "settings": {
+        "subheading": "Ils ont retrouvé leur tranquillité",
+        "title": "Avis de nos clients",
+        "page_size": 6,
+        "background": "#F6F1E7"
+      }
+    },
+    "promise": {
+      "type": "rich-text",
+      "blocks": {
+        "i": {
+          "type": "icon",
+          "settings": {
+            "icon": "picto-award-gift",
+            "icon_width": 48,
+            "icon_background_type": "circle",
+            "icon_background": "#E58A2E",
+            "icon_color": "#ffffff"
+          }
+        },
+        "t": {
+          "type": "heading",
+          "settings": {
+            "text": "30 jours pour l'essayer chez vous",
+            "heading_tag": "h2"
+          }
+        },
+        "c": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Branchez ZONÉA, vivez avec pendant 30 jours. S'il ne vous convient pas, on vous rembourse. Simple.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "i",
+        "t",
+        "c"
+      ],
+      "settings": {
+        "full_width": true,
+        "content_width": "medium",
+        "text_position": "center",
+        "background": "#15211D",
+        "text_color": "#F6F1E7"
+      }
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": {
+          "type": "item",
+          "settings": {
+            "title": "Est-ce que je vais entendre l'appareil ?",
+            "content": "<p>Non. Les ultrasons sont au-delà de ce que l'oreille humaine perçoit. Seul un petit voyant lumineux indique qu'il fonctionne.</p>"
+          }
+        },
+        "q2": {
+          "type": "item",
+          "settings": {
+            "title": "Et mes animaux de compagnie ?",
+            "content": "<p>Les chiens et les chats peuvent percevoir certains ultrasons : si votre animal semble gêné, placez l'appareil dans une autre pièce. <strong>N'installez pas ZONÉA dans la pièce où vivent des rongeurs ou petits animaux</strong> (hamster, lapin, cochon d'Inde, furet), ni près d'un aquarium.</p>"
+          }
+        },
+        "q3": {
+          "type": "item",
+          "settings": {
+            "title": "Combien de temps avant de voir une différence ?",
+            "content": "<p>Cela dépend de chaque logement (accès, voisinage, saison). Laissez ZONÉA fonctionner en continu, un appareil par pièce concernée. Vous avez 30 jours pour juger : s'il ne vous convient pas, on vous rembourse.</p>"
+          }
+        },
+        "q4": {
+          "type": "item",
+          "settings": {
+            "title": "Dois-je continuer à nettoyer ou traiter ?",
+            "content": "<p>Oui, garder un logement propre et sans nourriture accessible reste utile. ZONÉA vient en complément : il évite de devoir pulvériser et vérifier des pièges en permanence. En cas d'infestation importante, un professionnel reste recommandé.</p>"
+          }
+        },
+        "q5": {
+          "type": "item",
+          "settings": {
+            "title": "Combien consomme-t-il ?",
+            "content": "<p>Très peu : c'est un petit appareil basse consommation conçu pour rester branché en permanence.</p>"
+          }
+        },
+        "q6": {
+          "type": "item",
+          "settings": {
+            "title": "Quels sont les délais de livraison ?",
+            "content": "<p>France : 6 à 10 jours ouvrés · Belgique : 8 à 12 jours ouvrés · Suisse : 7 à 11 jours ouvrés. Livraison offerte sur les packs de 3 et de 6.</p>"
+          }
+        },
+        "q7": {
+          "type": "item",
+          "settings": {
+            "title": "Suisse : y a-t-il des frais de douane ?",
+            "content": "<p>Selon le montant de la commande, la TVA suisse et des frais de dédouanement peuvent être perçus à la livraison par le transporteur.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
+      "settings": {
+        "full_width": false,
+        "subheading": "Vos questions",
+        "title": "Questions fréquentes",
+        "content": "",
+        "text_position": "start",
+        "button_text": "Toutes les questions",
+        "button_url": "/pages/faq",
+        "background": "#F6F1E7",
+        "text_color": "#15211D"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "reassurance",
+    "problem",
+    "steps",
+    "compare",
+    "reviews",
+    "promise",
+    "faq"
+  ]
+}
