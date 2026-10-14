@@ -1,0 +1,121 @@
+{%- comment -%}
+  ZONÉA – Cartes de packs (Impact). Pilote le sélecteur de variantes natif (masqué).
+  Usage : {% render 'zonea-packs', product: product %}
+{%- endcomment -%}
+{%- liquid
+  assign p = product
+  assign unit_price = p.variants[0].price
+  assign current = p.selected_or_first_available_variant
+  assign option = p.options_with_values[0]
+-%}
+{%- if p and p.variants.size > 1 -%}
+<div class="zn-pp" data-zn-packs {% if p.selected_variant == blank %}data-auto-default="2"{% endif %}>
+  <p class="zn-pp__heading">Choisissez votre protection</p>
+  <div class="zn-pp__list" role="radiogroup" aria-label="Choisissez votre pack">
+    {%- for v in p.variants limit: 3 -%}
+      {%- liquid
+        assign i = forloop.index
+        case i
+          when 1
+            assign units = 1
+            assign label = '1 appareil'
+            assign for_who = 'Studio ou une seule pièce'
+            assign badge = ''
+            assign note = ''
+          when 2
+            assign units = 3
+            assign label = '3 appareils · 2 + 1 offert'
+            assign for_who = 'Appartement de 2 à 3 pièces'
+            assign badge = 'Recommandé'
+            assign note = 'Livraison offerte'
+          else
+            assign units = 6
+            assign label = '6 appareils · 3 + 3 offerts'
+            assign for_who = 'Maison ou grand appartement'
+            assign badge = 'Meilleur prix'
+            assign note = 'Livraison offerte'
+        endcase
+        assign full = unit_price | times: units
+        assign saving = full | minus: v.price
+        assign value_id = ''
+        for ov in option.values
+          if ov.name == v.option1
+            assign value_id = ov.id
+          endif
+        endfor
+      -%}
+      <button type="button" class="zn-pp__card{% if badge != blank %} zn-pp__card--badge{% endif %}" role="radio"
+        aria-checked="{% if v.id == current.id %}true{% else %}false{% endif %}"
+        data-index="{{ i }}" data-variant-id="{{ v.id }}" data-value-id="{{ value_id }}" {% unless v.available %}disabled{% endunless %}>
+        {%- if badge != blank -%}<span class="zn-pp__badge">{{ badge }}</span>{%- endif -%}
+        <span class="zn-pp__radio" aria-hidden="true"></span>
+        <span class="zn-pp__main">
+          <span class="zn-pp__label">{{ label }}</span>
+          <span class="zn-pp__for">{{ for_who }}</span>
+          {%- if note != blank -%}<span class="zn-pp__note">✓ {{ note }}</span>{%- endif -%}
+        </span>
+        <span class="zn-pp__prices">
+          <span class="zn-pp__price">{{ v.price | money }}</span>
+          {%- if units > 1 -%}
+            <span class="zn-pp__unit">soit {{ v.price | divided_by: units | money }} / appareil</span>
+            {%- if saving > 0 -%}<span class="zn-pp__save">au lieu de {{ full | money }} à l'unité</span>{%- endif -%}
+          {%- endif -%}
+        </span>
+      </button>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+  .product-info:has([data-zn-packs]) variant-picker,
+  .featured-product:has([data-zn-packs]) variant-picker,
+  section:has([data-zn-packs]) variant-picker { position:absolute!important; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  .zn-pp { width:100%; }
+  .zn-pp__heading { font-weight:700; margin:0 0 12px; font-size:1rem; color:#15211D; }
+  .zn-pp__list { display:grid; gap:14px; }
+  .zn-pp__card { position:relative; display:flex; align-items:center; gap:14px; width:100%; text-align:left; padding:16px; border:2px solid #E4DCCB; border-radius:16px; background:#FFFDF8; cursor:pointer; font:inherit; color:#15211D; transition:border-color .15s, box-shadow .15s, background .15s; }
+  .zn-pp__card--badge { margin-top:8px; }
+  .zn-pp__card:hover { border-color:#B9C4B0; }
+  .zn-pp__card[aria-checked="true"] { border-color:#15211D; background:#FFFFFF; box-shadow:0 10px 24px rgba(21,33,29,.12); }
+  .zn-pp__card:disabled { opacity:.5; cursor:not-allowed; }
+  .zn-pp__radio { flex:0 0 22px; height:22px; border-radius:50%; border:2px solid #B9C4B0; position:relative; }
+  .zn-pp__card[aria-checked="true"] .zn-pp__radio { border-color:#15211D; }
+  .zn-pp__card[aria-checked="true"] .zn-pp__radio::after { content:""; position:absolute; inset:4px; border-radius:50%; background:#E58A2E; }
+  .zn-pp__main { flex:1 1 auto; display:flex; flex-direction:column; gap:2px; min-width:0; }
+  .zn-pp__label { font-weight:800; font-size:1.02rem; }
+  .zn-pp__for { font-size:.86rem; color:#5E6A63; }
+  .zn-pp__note { font-size:.8rem; font-weight:700; color:#3F7A4E; margin-top:2px; }
+  .zn-pp__prices { flex:0 0 auto; display:flex; flex-direction:column; align-items:flex-end; gap:2px; text-align:right; }
+  .zn-pp__price { font-weight:800; font-size:1.15rem; }
+  .zn-pp__unit { font-size:.78rem; font-weight:700; color:#B5651A; }
+  .zn-pp__save { font-size:.72rem; color:#5E6A63; text-decoration:line-through; }
+  .zn-pp__badge { position:absolute; top:-12px; left:14px; background:#E58A2E; color:#fff; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:4px 10px; border-radius:999px; }
+  .zn-pp__card:not(.zn-pp__card--badge) + .zn-pp__card--badge { margin-top:8px; }
+</style>
+
+<script>
+  (function () {
+    if (window.__znPacks) return; window.__znPacks = true;
+    function scope(el) { return el.closest('section, .shopify-section') || document; }
+    function select(card) {
+      var root = scope(card);
+      root.querySelectorAll('.zn-pp__card').forEach(function (c) { c.setAttribute('aria-checked', c === card ? 'true' : 'false'); });
+      var input = root.querySelector('variant-picker input[type="radio"][value="' + card.dataset.valueId + '"]');
+      if (input && !input.checked) { input.click(); }
+    }
+    document.addEventListener('click', function (e) {
+      var card = e.target.closest && e.target.closest('.zn-pp__card');
+      if (card && !card.disabled) select(card);
+    });
+    function autoDefault() {
+      document.querySelectorAll('[data-zn-packs][data-auto-default]').forEach(function (pp) {
+        var card = pp.querySelector('.zn-pp__card[data-index="' + pp.dataset.autoDefault + '"]');
+        pp.removeAttribute('data-auto-default');
+        if (card) select(card);
+      });
+    }
+    var ready = (window.customElements && customElements.whenDefined) ? customElements.whenDefined('variant-picker') : Promise.resolve();
+    ready.then(function () { setTimeout(autoDefault, 50); });
+  })();
+</script>
+{%- endif -%}
