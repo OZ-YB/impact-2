@@ -1,0 +1,199 @@
+{%- comment -%}
+  ZONÉA – Avis clients (V8) : résumé, répartition, filtres, galerie UGC, liste paginée.
+  Source : métaobjets « zonea_avis » — uniquement des avis AUTHENTIQUES de vrais clients,
+  affichés seulement si « consentement » = vrai. Aucun avis inventé, aucun avis de concurrent.
+{%- endcomment -%}
+{%- liquid
+  assign total = 0
+  assign count = 0
+  assign c5 = 0
+  assign c4 = 0
+  assign c3 = 0
+  assign c2 = 0
+  assign c1 = 0
+  assign media_count = 0
+  for r in shop.metaobjects.zonea_avis.values
+    if r.consentement.value == true
+      assign n = r.note.value | default: 5
+      assign total = total | plus: n
+      assign count = count | plus: 1
+      case n
+        when 5
+          assign c5 = c5 | plus: 1
+        when 4
+          assign c4 = c4 | plus: 1
+        when 3
+          assign c3 = c3 | plus: 1
+        when 2
+          assign c2 = c2 | plus: 1
+        else
+          assign c1 = c1 | plus: 1
+      endcase
+      if r.photo.value != blank or r.video.value != blank
+        assign media_count = media_count | plus: 1
+      endif
+    endif
+  endfor
+-%}
+<div id="avis" class="zn-rv" style="--zn-bg: {{ section.settings.background }};">
+  <div class="zn-rv__wrap">
+    {%- if section.settings.subheading != blank -%}<p class="zn-rv__kicker">{{ section.settings.subheading }}</p>{%- endif -%}
+    <h2 class="zn-rv__title">{{ section.settings.title }}</h2>
+
+    {%- if count > 0 -%}
+      {%- assign avg = total | times: 1.0 | divided_by: count | round: 1 -%}
+      <div class="zn-rv__summary">
+        <div class="zn-rv__score">
+          <span class="zn-rv__avg">{{ avg | replace: '.', ',' }}</span>
+          <span class="zn-rv__stars" style="--zn-r: {{ avg | times: 20 }}%" aria-label="{{ avg }} sur 5">★★★★★</span>
+          <span class="zn-rv__count">{{ count }} avis vérifié{% if count > 1 %}s{% endif %}</span>
+        </div>
+        <div class="zn-rv__bars">
+          {%- for s in (1..5) reversed -%}
+            {%- case s -%}{%- when 5 -%}{%- assign cs = c5 -%}{%- when 4 -%}{%- assign cs = c4 -%}{%- when 3 -%}{%- assign cs = c3 -%}{%- when 2 -%}{%- assign cs = c2 -%}{%- else -%}{%- assign cs = c1 -%}{%- endcase -%}
+            {%- assign pct = cs | times: 100 | divided_by: count -%}
+            <button type="button" class="zn-rv__bar" data-filter="{{ s }}"><span>{{ s }}★</span><span class="zn-rv__track"><span style="width: {{ pct }}%"></span></span><span>{{ cs }}</span></button>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- if media_count > 0 -%}
+        <div class="zn-rv__gallery" aria-label="Photos et vidéos de nos clients">
+          {%- for r in shop.metaobjects.zonea_avis.values -%}
+            {%- if r.consentement.value == true -%}
+              {%- if r.video.value != blank -%}
+                <div class="zn-rv__gitem">{{ r.video.value | video_tag: autoplay: false, controls: true, muted: true, playsinline: true, image_size: '400x' }}</div>
+              {%- elsif r.photo.value != blank -%}
+                <div class="zn-rv__gitem">{{ r.photo.value | image_url: width: 400 | image_tag: loading: 'lazy', alt: r.auteur.value }}</div>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      <div class="zn-rv__filters" role="toolbar" aria-label="Filtrer les avis">
+        <button type="button" class="is-active" data-filter="all">Tous ({{ count }})</button>
+        {%- if media_count > 0 -%}<button type="button" data-filter="media">Avec photos / vidéos ({{ media_count }})</button>{%- endif -%}
+        <button type="button" data-filter="5">5★</button>
+        <button type="button" data-filter="4">4★</button>
+      </div>
+
+      <div class="zn-rv__list" data-page-size="{{ section.settings.page_size }}">
+        {%- for r in shop.metaobjects.zonea_avis.values -%}
+          {%- if r.consentement.value == true -%}
+            {%- assign n = r.note.value | default: 5 -%}
+            {%- assign has_media = false -%}
+            {%- if r.photo.value != blank or r.video.value != blank -%}{%- assign has_media = true -%}{%- endif -%}
+            <article class="zn-rv__card" data-rating="{{ n }}" data-media="{{ has_media }}">
+              <header class="zn-rv__head">
+                <span class="zn-rv__avatar" aria-hidden="true">{{ r.auteur.value | slice: 0 | upcase }}</span>
+                <div>
+                  <p class="zn-rv__author">{{ r.auteur.value }}{% if r.achat_verifie.value == true %} <span class="zn-rv__verified">✓ Achat vérifié</span>{% endif %}</p>
+                  <p class="zn-rv__meta">{% if r.ville.value != blank %}{{ r.ville.value }}{% endif %}{% if r.pays.value != blank %} · {{ r.pays.value }}{% endif %}{% if r.date.value != blank %} · {{ r.date.value | date: '%d/%m/%Y' }}{% endif %}</p>
+                </div>
+              </header>
+              <span class="zn-rv__stars zn-rv__stars--sm" style="--zn-r: {{ n | times: 20 }}%" aria-label="{{ n }} sur 5">★★★★★</span>
+              {%- if r.titre.value != blank -%}<p class="zn-rv__rtitle">{{ r.titre.value }}</p>{%- endif -%}
+              <div class="zn-rv__text">{{ r.texte.value | newline_to_br }}</div>
+              {%- if has_media -%}
+                <div class="zn-rv__media">
+                  {%- if r.photo.value != blank -%}{{ r.photo.value | image_url: width: 300 | image_tag: loading: 'lazy', alt: r.auteur.value }}{%- endif -%}
+                  {%- if r.photo_2.value != blank -%}{{ r.photo_2.value | image_url: width: 300 | image_tag: loading: 'lazy', alt: r.auteur.value }}{%- endif -%}
+                  {%- if r.video.value != blank -%}{{ r.video.value | video_tag: controls: true, muted: true, playsinline: true, image_size: '300x' }}{%- endif -%}
+                </div>
+              {%- endif -%}
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <button type="button" class="zn-rv__more" hidden>Voir plus d'avis</button>
+    {%- else -%}
+      <div class="zn-rv__empty">
+        <p class="zn-rv__empty-title">{{ section.settings.empty_title }}</p>
+        <p>{{ section.settings.empty_text }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+<style>
+  .zn-rv { background: var(--zn-bg, #F6F1E7); padding: 48px 16px; color:#15211D; }
+  .zn-rv__wrap { max-width: 1100px; margin: 0 auto; }
+  .zn-rv__kicker { text-transform:uppercase; letter-spacing:.12em; font-size:.75rem; font-weight:700; color:#B5651A; margin:0 0 6px; text-align:center; }
+  .zn-rv__title { text-align:center; margin:0 0 24px; }
+  .zn-rv__summary { display:grid; gap:20px; background:#FFFDF8; border:1px solid #E4DCCB; border-radius:20px; padding:20px; margin-bottom:20px; }
+  @media (min-width: 750px) { .zn-rv__summary { grid-template-columns: 220px 1fr; align-items:center; } }
+  .zn-rv__score { display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .zn-rv__avg { font-size:3rem; font-weight:800; line-height:1; }
+  .zn-rv__count { font-size:.85rem; color:#5E6A63; }
+  .zn-rv__stars { position:relative; display:inline-block; font-size:1.3rem; letter-spacing:2px; color:#E4DCCB; }
+  .zn-rv__stars::before { content:"★★★★★"; position:absolute; inset:0; width:var(--zn-r); overflow:hidden; color:#E58A2E; }
+  .zn-rv__stars--sm { font-size:1rem; }
+  .zn-rv__bars { display:grid; gap:6px; }
+  .zn-rv__bar { display:grid; grid-template-columns:32px 1fr 28px; gap:8px; align-items:center; background:none; border:0; padding:0; font:inherit; font-size:.85rem; color:inherit; cursor:pointer; }
+  .zn-rv__track { height:8px; background:#EFE8DA; border-radius:999px; overflow:hidden; }
+  .zn-rv__track span { display:block; height:100%; background:#15211D; }
+  .zn-rv__gallery { display:flex; gap:10px; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:6px; margin-bottom:16px; }
+  .zn-rv__gitem { flex:0 0 140px; height:180px; border-radius:14px; overflow:hidden; scroll-snap-align:start; background:#EFE8DA; }
+  .zn-rv__gitem img, .zn-rv__gitem video { width:100%; height:100%; object-fit:cover; }
+  .zn-rv__filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+  .zn-rv__filters button { border:1px solid #CFC5B1; background:#FFFDF8; border-radius:999px; padding:7px 14px; font:inherit; font-size:.85rem; cursor:pointer; color:#15211D; }
+  .zn-rv__filters button.is-active { background:#15211D; color:#F6F1E7; border-color:#15211D; }
+  .zn-rv__list { display:grid; gap:14px; }
+  @media (min-width: 750px) { .zn-rv__list { grid-template-columns:1fr 1fr; } }
+  .zn-rv__card { background:#FFFDF8; border:1px solid #E4DCCB; border-radius:18px; padding:18px; display:flex; flex-direction:column; gap:8px; }
+  .zn-rv__card[hidden] { display:none; }
+  .zn-rv__head { display:flex; gap:10px; align-items:center; }
+  .zn-rv__avatar { width:38px; height:38px; border-radius:50%; background:#B9C4B0; color:#15211D; font-weight:800; display:flex; align-items:center; justify-content:center; }
+  .zn-rv__author { margin:0; font-weight:700; font-size:.95rem; }
+  .zn-rv__verified { font-weight:600; font-size:.75rem; color:#3F7A4E; }
+  .zn-rv__meta { margin:0; font-size:.78rem; color:#5E6A63; }
+  .zn-rv__rtitle { margin:0; font-weight:700; }
+  .zn-rv__text { font-size:.92rem; line-height:1.5; }
+  .zn-rv__media { display:flex; gap:8px; flex-wrap:wrap; }
+  .zn-rv__media img, .zn-rv__media video { width:96px; height:96px; object-fit:cover; border-radius:10px; }
+  .zn-rv__more { display:block; margin:20px auto 0; border:2px solid #15211D; background:transparent; color:#15211D; border-radius:999px; padding:12px 24px; font:inherit; font-weight:700; cursor:pointer; }
+  .zn-rv__empty { background:#FFFDF8; border:1px dashed #CFC5B1; border-radius:20px; padding:28px 20px; text-align:center; }
+  .zn-rv__empty-title { font-weight:800; font-size:1.1rem; margin:0 0 6px; }
+</style>
+
+<script>
+  (function () {
+    var root = document.currentScript.previousElementSibling.previousElementSibling;
+    if (!root || !root.classList.contains('zn-rv')) root = document.getElementById('avis');
+    if (!root) return;
+    var list = root.querySelector('.zn-rv__list'); if (!list) return;
+    var more = root.querySelector('.zn-rv__more');
+    var size = parseInt(list.dataset.pageSize || '6', 10), shown = size, filter = 'all';
+    function match(c) { return filter === 'all' || (filter === 'media' ? c.dataset.media === 'true' : c.dataset.rating === filter); }
+    function render() {
+      var cards = Array.prototype.slice.call(list.children), visible = 0, total = 0;
+      cards.forEach(function (c) { var ok = match(c); if (ok) total++; var show = ok && visible < shown; if (show) visible++; c.hidden = !show; });
+      more.hidden = total <= shown;
+    }
+    root.querySelectorAll('[data-filter]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        filter = b.dataset.filter; shown = size;
+        root.querySelectorAll('.zn-rv__filters button').forEach(function (x) { x.classList.toggle('is-active', x.dataset.filter === filter); });
+        render();
+      });
+    });
+    more.addEventListener('click', function () { shown += size; render(); });
+    render();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "ZONÉA – Avis clients",
+  "settings": [
+    { "type": "text", "id": "subheading", "label": "Sur-titre", "default": "Ils ont retrouvé leur tranquillité" },
+    { "type": "text", "id": "title", "label": "Titre", "default": "Avis de nos clients" },
+    { "type": "range", "id": "page_size", "label": "Avis affichés par page", "min": 2, "max": 12, "step": 1, "default": 6 },
+    { "type": "text", "id": "empty_title", "label": "Titre si aucun avis", "default": "Les avis de nos clients arrivent" },
+    { "type": "textarea", "id": "empty_text", "label": "Texte si aucun avis", "default": "Nous publions uniquement des avis authentiques de clients ZONÉA, avec leur accord." },
+    { "type": "color", "id": "background", "label": "Fond", "default": "#F6F1E7" }
+  ],
+  "presets": [{ "name": "ZONÉA – Avis clients" }]
+}
+{% endschema %}
