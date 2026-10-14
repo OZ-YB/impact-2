@@ -1,0 +1,26 @@
+{%- comment -%}
+  ZONÉA – Note moyenne calculée à partir des VRAIS avis (métaobjets zonea_avis avec consentement = vrai).
+  N'affiche rien tant qu'aucun avis authentique n'est publié.
+{%- endcomment -%}
+{%- liquid
+  assign zn_total = 0
+  assign zn_count = 0
+  for r in shop.metaobjects.zonea_avis.values
+    if r.consentement.value == true
+      assign zn_total = zn_total | plus: r.note.value
+      assign zn_count = zn_count | plus: 1
+    endif
+  endfor
+-%}
+{%- if zn_count > 0 -%}
+  {%- assign zn_avg = zn_total | times: 1.0 | divided_by: zn_count | round: 1 -%}
+  <a href="#avis" class="zn-rating">
+    <span class="zn-rating__stars" style="--zn-r: {{ zn_avg | times: 20 }}%" aria-hidden="true">★★★★★</span>
+    <span class="zn-rating__txt"><strong>{{ zn_avg | replace: '.', ',' }}/5</strong> · {{ zn_count }} avis client{% if zn_count > 1 %}s{% endif %}</span>
+  </a>
+  <style>
+    .zn-rating { display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#15211D; font-size:.9rem; }
+    .zn-rating__stars { position:relative; font-size:1.05rem; letter-spacing:2px; color:#E4DCCB; }
+    .zn-rating__stars::before { content:"★★★★★"; position:absolute; inset:0; width:var(--zn-r); overflow:hidden; color:#E58A2E; }
+  </style>
+{%- endif -%}
