@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header group",
@@ -5,23 +14,41 @@
     "announcement-bar": {
       "type": "announcement-bar",
       "blocks": {
-        "message": {
+        "m1": {
           "type": "message",
           "settings": {
-            "text": "Announce something here"
+            "text": "🚚 Livraison offerte sur les packs 3 et 6 · FR · BE · CH",
+            "url": "/products/zonea-repulsif-a-ultrasons-pour-la-maison"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "text": "↩️ Satisfait ou remboursé 30 jours",
+            "url": ""
+          }
+        },
+        "m3": {
+          "type": "message",
+          "settings": {
+            "text": "🔒 Paiement 100 % sécurisé",
+            "url": ""
           }
         }
       },
       "block_order": [
-        "message"
+        "m1",
+        "m2",
+        "m3"
       ],
       "settings": {
         "enable_sticky": false,
+        "autoplay": true,
+        "cycle_speed": 5,
         "text_size": "text-xs",
-        "navigation_mode": "scrolling",
-        "scrolling_speed": 10,
-        "background": "#1a1a1a",
-        "text_color": "#ffffff"
+        "navigation_mode": "arrows",
+        "background": "#15211D",
+        "text_color": "#F6F1E7"
       }
     },
     "header": {
@@ -30,16 +57,15 @@
         "enable_sticky": true,
         "hide_on_scroll": false,
         "logo": "{{shop.brand.logo}}",
-        "logo_max_width": 120,
+        "logo_max_width": 130,
         "logo_mobile_max_width": 100,
         "menu": "main-menu",
         "menu_open_trigger": "click",
         "opening_from": "bottom",
         "layout": "logo_left_navigation_center",
-        "show_social_media": true,
+        "show_social_media": false,
         "show_country_flag": true,
         "show_country_name": false,
-        "transparent_header_text_color": "#ffffff",
         "reduce_padding": false,
         "background_opacity": 100,
         "background_blur_radius": 0
