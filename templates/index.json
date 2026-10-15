@@ -38,7 +38,7 @@
             "size": "xl",
             "text": "Je protège ma maison",
             "url": "/products/zonea-repulsif-a-ultrasons-pour-la-maison",
-            "background": "#E58A2E",
+            "background": "#e58a2e",
             "text_color": "#ffffff"
           }
         }
@@ -56,8 +56,8 @@
         "image_size": "lg",
         "mobile_text_position": "place-self-end-center text-center",
         "desktop_text_position": "sm:place-self-center-start sm:text-start",
-        "text_color": "#F6F1E7",
-        "overlay_color": "#15211D",
+        "text_color": "#f6f1e7",
+        "overlay_color": "#15211d",
         "overlay_opacity": 45
       }
     },
@@ -66,12 +66,14 @@
       "settings": {
         "full_width": true,
         "text": "Sans spray • Sans odeur • Inaudible pour vous • Branchez, c'est tout • Livraison offerte sur les packs 3 et 6 • 30 jours pour essayer •",
-        "text_size": "small",
+        "text_size": "xsmall",
         "text_style": "fill",
         "scrolling_mode": "auto",
         "scrolling_speed": 6,
-        "background": "#15211D",
-        "text_color": "#F6F1E7"
+        "background": "#15211d",
+        "background_gradient": "",
+        "text_color": "#f6f1e7",
+        "text_gradient": ""
       }
     },
     "problem": {
@@ -83,13 +85,19 @@
             "media_width": 50,
             "media_position": "start",
             "text_position": "place-self-center-start text-start",
+            "icon": "none",
+            "icon_width": 48,
             "subheading": "Le vrai problème",
             "title": "Le cafard que vous voyez n'est pas le problème.",
             "content": "<p>Vous nettoyez tout, vous ne laissez rien traîner… et ils reviennent quand même. Parce qu'ils ne viennent pas forcément de chez vous : <strong>canalisations, fissures, passages autour des tuyaux, logements voisins.</strong></p><p>Le spray règle seulement celui que vous voyez. Les autres continuent de circuler par des passages que vous ne contrôlez pas.</p>",
-            "background": "#FFFDF8",
-            "text_color": "#15211D",
             "link_text": "Découvrir la solution",
-            "link_url": "/products/zonea-repulsif-a-ultrasons-pour-la-maison"
+            "link_url": "/products/zonea-repulsif-a-ultrasons-pour-la-maison",
+            "background": "#fffdf8",
+            "background_gradient": "",
+            "text_color": "#15211d",
+            "text_gradient": "",
+            "button_background": "",
+            "button_text_color": ""
           }
         }
       },
@@ -111,7 +119,10 @@
             "column_size": "3",
             "title": "1. Branchez",
             "heading_tag": "h4",
-            "content": "<p>Sur une prise dégagée de la pièce à protéger : cuisine, salle de bain, chambre, entrée.</p>"
+            "content": "<p>Sur une prise dégagée de la pièce à protéger : cuisine, salle de bain, chambre, entrée.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
           }
         },
         "s2": {
@@ -120,7 +131,10 @@
             "column_size": "3",
             "title": "2. Laissez fonctionner",
             "heading_tag": "h4",
-            "content": "<p>ZONÉA émet des ultrasons en continu, jour et nuit. Sans bruit pour vous, sans odeur, sans produit.</p>"
+            "content": "<p>ZONÉA émet des ultrasons en continu, jour et nuit. Sans bruit pour vous, sans odeur, sans produit.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
           }
         },
         "s3": {
@@ -129,7 +143,10 @@
             "column_size": "3",
             "title": "3. Retrouvez votre tranquillité",
             "heading_tag": "h4",
-            "content": "<p>Plus besoin de pulvériser, de poser des pièges ni de vérifier chaque soir. Vous reprenez le contrôle.</p>"
+            "content": "<p>Plus besoin de pulvériser, de poser des pièges ni de vérifier chaque soir. Vous reprenez le contrôle.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
           }
         }
       },
@@ -146,8 +163,9 @@
         "subheading": "Simple comme une prise",
         "title": "Comment ça marche",
         "content": "",
-        "background": "#F6F1E7",
-        "text_color": "#15211D"
+        "background": "#f6f1e7",
+        "background_gradient": "",
+        "text_color": "#15211d"
       }
     },
     "product": {
@@ -171,7 +189,9 @@
             "hide_sold_out_variants": false,
             "stack_blocks": true,
             "selector_style": "block",
-            "swatch_selector_style": "none"
+            "swatch_selector_style": "none",
+            "variant_image_options": "",
+            "size_chart_page": ""
           }
         },
         "packs": {
@@ -185,8 +205,10 @@
           "settings": {
             "show_payment_button": false,
             "show_gift_card_recipient": false,
-            "atc_button_background": "#E58A2E",
-            "atc_button_text_color": "#ffffff"
+            "atc_button_background": "#e58a2e",
+            "atc_button_text_color": "#ffffff",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
           }
         },
         "trust": {
@@ -211,9 +233,15 @@
         "desktop_media_layout": "carousel_thumbnails_bottom",
         "mobile_media_size": "expanded",
         "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": true,
+        "enable_video_looping": false,
         "enable_image_zoom": true,
-        "background": "#FFFDF8",
-        "text_color": "#15211D"
+        "max_image_zoom_level": 3,
+        "background": "#fffdf8",
+        "background_gradient": "",
+        "text_color": "#15211d",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
       }
     },
     "compare": {
@@ -227,40 +255,105 @@
             "heading_3": "Aucune odeur",
             "heading_4": "Rien à racheter chaque mois",
             "heading_5": "Fonctionne en continu, jour et nuit",
-            "heading_6": "Aucune manipulation au quotidien"
+            "heading_6": "Aucune manipulation au quotidien",
+            "heading_7": "",
+            "heading_8": "",
+            "heading_9": "",
+            "heading_10": "",
+            "heading_11": "",
+            "heading_12": "",
+            "heading_13": "",
+            "heading_14": "",
+            "heading_15": "",
+            "heading_16": "",
+            "heading_17": "",
+            "heading_18": "",
+            "heading_19": "",
+            "heading_20": ""
           }
         },
         "v1": {
           "type": "values",
           "settings": {
+            "product": "",
             "value_1": "<p>ZONÉA</p>",
             "value_2": "<p>✓</p>",
             "value_3": "<p>✓</p>",
             "value_4": "<p>✓</p>",
             "value_5": "<p>✓</p>",
-            "value_6": "<p>✓</p>"
+            "value_6": "<p>✓</p>",
+            "value_7": "",
+            "value_8": "",
+            "value_9": "",
+            "value_10": "",
+            "value_11": "",
+            "value_12": "",
+            "value_13": "",
+            "value_14": "",
+            "value_15": "",
+            "value_16": "",
+            "value_17": "",
+            "value_18": "",
+            "value_19": "",
+            "value_20": "",
+            "view_button_background": "",
+            "view_button_text_color": ""
           }
         },
         "v2": {
           "type": "values",
           "settings": {
+            "product": "",
             "value_1": "<p>Sprays / bombes</p>",
             "value_2": "<p>✗</p>",
             "value_3": "<p>✗</p>",
             "value_4": "<p>✗</p>",
             "value_5": "<p>✗</p>",
-            "value_6": "<p>✗</p>"
+            "value_6": "<p>✗</p>",
+            "value_7": "",
+            "value_8": "",
+            "value_9": "",
+            "value_10": "",
+            "value_11": "",
+            "value_12": "",
+            "value_13": "",
+            "value_14": "",
+            "value_15": "",
+            "value_16": "",
+            "value_17": "",
+            "value_18": "",
+            "value_19": "",
+            "value_20": "",
+            "view_button_background": "",
+            "view_button_text_color": ""
           }
         },
         "v3": {
           "type": "values",
           "settings": {
+            "product": "",
             "value_1": "<p>Pièges / gels</p>",
             "value_2": "<p>✗</p>",
             "value_3": "<p>✓</p>",
             "value_4": "<p>✗</p>",
             "value_5": "<p>✗</p>",
-            "value_6": "<p>✗</p>"
+            "value_6": "<p>✗</p>",
+            "value_7": "",
+            "value_8": "",
+            "value_9": "",
+            "value_10": "",
+            "value_11": "",
+            "value_12": "",
+            "value_13": "",
+            "value_14": "",
+            "value_15": "",
+            "value_16": "",
+            "value_17": "",
+            "value_18": "",
+            "value_19": "",
+            "value_20": "",
+            "view_button_background": "",
+            "view_button_text_color": ""
           }
         }
       },
@@ -275,12 +368,25 @@
         "subheading": "Comparatif",
         "title": "Pourquoi changer de méthode ?",
         "content": "<p>Les sprays et les pièges demandent d'agir encore et encore. ZONÉA travaille en continu, sans que vous ayez à y penser.</p>",
+        "button_text": "",
+        "button_url": "",
         "text_position": "center",
         "max_rows": 10,
-        "background": "#FFFDF8",
-        "text_color": "#15211D",
-        "chart_background": "#F6F1E7",
-        "chart_text_color": "#15211D"
+        "view_all_text": "View all",
+        "view_less_text": "View less",
+        "view_product": "View",
+        "viewing_product": "",
+        "show_product_swatch": true,
+        "background": "#fffdf8",
+        "background_gradient": "",
+        "text_color": "#15211d",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "chart_background": "#f6f1e7",
+        "chart_text_color": "#15211d",
+        "chart_true_false_color": ""
       }
     },
     "reviews": {
@@ -289,7 +395,9 @@
         "subheading": "Ils ont retrouvé leur tranquillité",
         "title": "Avis de nos clients",
         "page_size": 6,
-        "background": "#F6F1E7"
+        "empty_title": "Les avis de nos clients arrivent",
+        "empty_text": "Nous publions uniquement des avis authentiques de clients ZONÉA, avec leur accord.",
+        "background": "#f6f1e7"
       }
     },
     "promise": {
@@ -301,7 +409,7 @@
             "icon": "picto-award-gift",
             "icon_width": 48,
             "icon_background_type": "circle",
-            "icon_background": "#E58A2E",
+            "icon_background": "#e58a2e",
             "icon_color": "#ffffff"
           }
         },
@@ -309,7 +417,9 @@
           "type": "heading",
           "settings": {
             "text": "30 jours pour l'essayer chez vous",
-            "heading_tag": "h2"
+            "heading_tag": "h2",
+            "text_color": "",
+            "gradient": ""
           }
         },
         "c": {
@@ -325,7 +435,7 @@
             "size": "lg",
             "text": "Choisir mon pack",
             "url": "/products/zonea-repulsif-a-ultrasons-pour-la-maison",
-            "background": "#E58A2E",
+            "background": "#e58a2e",
             "text_color": "#ffffff"
           }
         }
@@ -340,8 +450,9 @@
         "full_width": true,
         "content_width": "medium",
         "text_position": "center",
-        "background": "#15211D",
-        "text_color": "#F6F1E7"
+        "background": "#15211d",
+        "background_gradient": "",
+        "text_color": "#f6f1e7"
       }
     },
     "faq": {
@@ -387,11 +498,21 @@
         "subheading": "Vos questions",
         "title": "Questions fréquentes",
         "content": "",
-        "text_position": "start",
+        "team_avatar_width": 160,
+        "support_hours": "Our customer support is available Monday to Friday: 8am-8:30pm.",
+        "answer_time": "Average answer time: 24h",
         "button_text": "Toutes les questions",
         "button_url": "/pages/faq",
-        "background": "#F6F1E7",
-        "text_color": "#15211D"
+        "text_position": "start",
+        "background": "#f6f1e7",
+        "background_gradient": "",
+        "text_color": "#15211d",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "",
+        "accordion_text_color": ""
       }
     }
   },
